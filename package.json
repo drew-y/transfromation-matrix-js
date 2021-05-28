@@ -1,0 +1,32 @@
+{
+  "name": "@drew-y/transformation-matrix",
+  "version": "1.0.0",
+  "description": "3D Transformation Matrix Utility",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "preversion": "tsc",
+    "prepublishOnly": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drew-y/transfromation-matrix-js.git"
+  },
+  "keywords": [
+    "3D",
+    "Transformation",
+    "Matrix",
+    "Math",
+    "Robotics"
+  ],
+  "author": "Drew Youngwerth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drew-y/transfromation-matrix-js/issues"
+  },
+  "homepage": "https://github.com/drew-y/transfromation-matrix-js#readme",
+  "devDependencies": {
+    "typescript": "^4.3.2"
+  }
+}

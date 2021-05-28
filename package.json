@@ -1,6 +1,6 @@
 {
   "name": "@drew-y/transformation-matrix",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "3D Transformation Matrix Utility",
   "main": "dist/index.js",
   "scripts": {

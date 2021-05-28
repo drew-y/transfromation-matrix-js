@@ -264,13 +264,14 @@ export class Matrix {
     }
 
     /** Multiply this matrix by the passed one */
-    multiply(matrix: Matrix) {
+    multiply(matrix: Matrix): this {
         this.setFromMatrixArray(this.multiplied(matrix).getElements());
+        return this;
     }
 
     /** Alias for multiply */
-    transform(matrix: Matrix) {
-        this.multiply(matrix);
+    transform(matrix: Matrix): this {
+        return this.multiply(matrix);
     }
 
     /** Rotates this matrix by the supplied quaternion */

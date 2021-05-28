@@ -460,4 +460,13 @@ export class Matrix {
     clone(): Matrix {
         return new Matrix().setFromMatrixArray(this.toArray());
     }
+
+    static fromPose(x: number, y: number, z: number, rx: number, ry: number, rz: number, order: EulerOrder = "XYZ"): Matrix {
+        return new Matrix().setPose(x, y, z, rx, ry, rz, order);
+    }
+
+    /** Create a new matrix from a flat 4x4 column-major array */
+    static fromArray(matrix: number[]) {
+        return new Matrix().setFromMatrixArray(matrix);
+    }
 }

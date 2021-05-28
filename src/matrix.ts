@@ -20,10 +20,27 @@ export class Matrix {
         return [...this.elements];
     }
 
+    /** XYZ Position */
+    getPosition(): [number, number, number] {
+        return [this.elements[12], this.elements[13], this.elements[14]];
+    }
+
+    /**
+     * @param order - Euler angle order.
+     * returns [X, Y, Z, RX, RY, RZ]
+     */
+    getPose(order: EulerOrder = "XYZ"): [number, number, number, number, number, number] {
+        return [...this.getPosition(), ...this.getEuler(order)];
+    }
+
     /** Set from a flat 4x4 column major transformation matrix */
     setFromMatrixArray(matrix: number[]): this {
         this.elements = matrix;
         return this;
+    }
+
+    setPose(x: number, y: number, z: number, rx: number, ry: number, rz: number, order: EulerOrder = "XYZ"): this {
+        return this.setPosition(x, y, z).setRotation(rx, ry, rz, order);
     }
 
     setPosition(x: number, y: number, z: number): this {
@@ -286,7 +303,7 @@ export class Matrix {
     }
 
     /** Returns a three length array representing angles in degrees */
-    toEuler(order: EulerOrder = "XYZ"): number[] {
+    getEuler(order: EulerOrder = "XYZ"): [number, number, number] {
         const te = this.elements;
         const m11 = te[0], m12 = te[4], m13 = te[8];
         const m21 = te[1], m22 = te[5], m23 = te[9];
@@ -421,15 +438,8 @@ export class Matrix {
         return [x, y, z, w];
     }
 
-    toArray(): number[] {
-        return [...this.elements];
-    }
-
-    clone(): Matrix {
-        return new Matrix().setFromMatrixArray(this.toArray());
-    }
-
-    toMatrix3(): number[] {
+    /** Extract the rotational portion of this matrix to a 3x3 column-major flat array */
+    toMatrix3Array(): number[] {
         const m = this.elements;
 
         return [
@@ -437,5 +447,17 @@ export class Matrix {
             m[4], m[5], m[6],
             m[2], m[6], m[10]
         ];
+    }
+
+    toJSON(): number[] {
+        return this.toArray();
+    }
+
+    toArray(): number[] {
+        return [...this.elements];
+    }
+
+    clone(): Matrix {
+        return new Matrix().setFromMatrixArray(this.toArray());
     }
 }
